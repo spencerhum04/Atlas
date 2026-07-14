@@ -1,0 +1,57 @@
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  text-align: center;
+}
+
+.loading-overlay__inner {
+  max-width: 760px;
+  padding: 0 24px;
+}
+
+.loading-overlay__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(18px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  animation-name: loading-fade;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+.loading-overlay__subtitle {
+  margin-top: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(13px, 1.4vw, 18px);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.65);
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes loading-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}

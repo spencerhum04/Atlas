@@ -1,0 +1,169 @@
+.ts-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 20vw;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+/* ── Pills — era + year side by side, high visibility ──────────────────────── */
+
+.ts-pills {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ts-pill {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.ts-pill--era {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.ts-pill--year {
+  color: #7db8ff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7), 0 0 12px rgba(100, 160, 255, 0.25);
+}
+
+/* ── Track ─────────────────────────────────────────────────────────────────── */
+
+.ts-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  touch-action: none;
+  padding: 14px 0;
+  margin: -14px 0;
+  background-clip: content-box;
+}
+
+.ts-fill {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  height: 6px;
+  border-radius: 999px 0 0 999px;
+  background: linear-gradient(90deg, #3b7cf5 0%, #5b9aff 100%);
+  pointer-events: none;
+}
+
+/* ── Thumb — slider-thumb-glass ────────────────────────────────────────────── */
+
+.ts-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 34px;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 30, 63, 0.15), 0 0 2px 0 rgba(0, 9, 20, 0.1);
+  overflow: hidden;
+  transition: transform 0.15s ease, height 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ts-thumb__filter,
+.ts-thumb__overlay,
+.ts-thumb__specular {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.ts-thumb__filter {
+  z-index: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ts-thumb__overlay {
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ts-thumb__specular {
+  z-index: 2;
+  box-shadow:
+    inset 1px 1px 0 rgba(69, 168, 243, 0.2),
+    inset 1px 3px 0 rgba(28, 63, 90, 0.05),
+    inset 0 0 22px rgb(255 255 255 / 60%),
+    inset -1px -1px 0 rgba(69, 168, 243, 0.12);
+}
+
+.ts-thumb--active {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.ts-thumb--active .ts-thumb__filter,
+.ts-thumb--active .ts-thumb__overlay,
+.ts-thumb--active .ts-thumb__specular {
+  opacity: 1;
+}
+
+.ts-thumb:active {
+  transform: translate(-50%, -50%) scaleY(0.97) scaleX(1.04);
+}
+
+/* ── Century toast ─────────────────────────────────────────────────────────── */
+
+.ts-toast {
+  position: absolute;
+  top: calc(50% + 26px);
+  transform: translateX(-50%);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #93b4ff;
+  background: rgba(15, 30, 80, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(60, 120, 255, 0.15);
+  z-index: 10;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: ts-toast-fade 0.8s ease-out forwards;
+}
+
+@keyframes ts-toast-fade {
+  0% { opacity: 0; transform: translateX(-50%) translateY(2px); }
+  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}

@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* Global resets for full-screen globe experience */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000008;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e0e0e0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default canvas outline */
+canvas:focus {
+  outline: none;
+}
+
+/* Cosmic radial gradient behind the globe.
+   Deep navy center → black edges creates a "magical orb in space" effect.
+   The globe canvas has a transparent background, so this shows through. */
+.globe-bg {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    #0a1628 0%,
+    #060e1a 30%,
+    #020810 55%,
+    #000004 80%,
+    #000000 100%
+  );
+}
+
+/* Starfield particle background — sits behind the globe */
+.starfield-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.starfield-bg > div,
+.starfield-bg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: none;
+}
+
+/* Globe wrapper — enables smooth animated transitions between tile modes */
+.globe-wrapper {
+  transition: filter 0.8s ease-in-out;
+}
+
+/* Dark mode — Voyager tiles desaturated into an elegant, high-contrast
+   grayscale.  Much brighter and more detailed than raw Dark Matter tiles
+   because Voyager has far more tonal range in its source colors. */
+.globe-filter-dark {
+  filter: saturate(0) brightness(0.7) contrast(2.0);
+}
+
+/* Color mode — Voyager tiles with boosted saturation for vivid,
+   alive-feeling colors.  Slight brightness push so nothing feels dull. */
+.globe-filter-color {
+  filter: brightness(0.7) saturate(2.5) contrast(1.2);
+}
+
+/* Location card slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Globe fade-out during hyperspace jump — quick 200ms opacity exit */
+.globe-fade-out {
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+  pointer-events: none;
+}

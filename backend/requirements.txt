@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+websockets
+gradium
+google-genai
+httpx
+python-dotenv
+pytest
+pytest-asyncio

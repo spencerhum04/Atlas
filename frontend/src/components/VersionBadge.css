@@ -1,0 +1,51 @@
+.version-badge {
+  position: relative;
+  text-decoration: none;
+  padding: 6px 16px;
+  color: #93b4ff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  background: rgba(15, 40, 120, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(60, 120, 255, 0.2);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  cursor: default;
+}
+.version-badge__sparkle {
+  width: 25px; height: 25px;
+  position: absolute; top: -12px; right: -2px;
+  transform: rotate(-20deg); filter: blur(0.5px);
+}
+.version-badge__sparkle::before,
+.version-badge__sparkle::after { content: ""; position: absolute; }
+.version-badge__sparkle::before {
+  width: 1px; height: 100%; left: 12px;
+  background: linear-gradient(to bottom, transparent, rgba(140, 180, 255, 0.7), transparent);
+}
+.version-badge__sparkle::after {
+  width: 100%; height: 1px; top: 12px;
+  background: linear-gradient(to left, transparent, rgba(140, 180, 255, 0.7), transparent);
+}
+.version-badge:hover .version-badge__sparkle::after,
+.version-badge:hover .version-badge__sparkle::before {
+  animation: version-badge-rotate 3s ease-in-out;
+}
+@keyframes version-badge-rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.8); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.version-badge::before {
+  content: ""; position: absolute; z-index: -1;
+  background: rgba(20, 50, 140, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(15, 40, 120, 0.4);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(60, 120, 255, 0.15);
+  top: -1px; right: -1px; bottom: -1px; left: -1px; border-radius: 999px;
+}
